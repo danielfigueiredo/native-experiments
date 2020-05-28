@@ -45,9 +45,9 @@ const windowDimension = Dimensions.get('window');
 
 const randomlyPositionBubbleHeads = (bubbleHeads: BubbleHeadInfo[]) => {
   const radius = 100;
-  const safeMarginOffset = radius * 2;
-  const windowHeight = windowDimension.height - safeMarginOffset;
-  const windowWidth = windowDimension.width - safeMarginOffset;
+  const diameter = radius * 2;
+  const windowHeight = windowDimension.height - diameter;
+  const windowWidth = windowDimension.width - diameter;
   const bubbleHeadPositions: BubbleHeadPosition[] = [];
   let i = 0;
 
