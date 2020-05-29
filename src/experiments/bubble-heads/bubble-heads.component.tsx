@@ -72,6 +72,7 @@ export const BubbleHeads = () => {
   const bubbleHeadPositions = randomlyPositionBubbleHeads(bubbleHeads);
   return bubbleHeads.map((bubbleHead: BubbleHeadInfo, index: number) => (
     <BubbleHead 
+      key={`bubble-${index}`}
       bubbleHeadPosition={{
         x: bubbleHeadPositions[index].x,
         y: bubbleHeadPositions[index].y,

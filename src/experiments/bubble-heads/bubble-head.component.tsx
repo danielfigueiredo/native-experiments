@@ -33,7 +33,7 @@ export const BubbleHead = ({ bubbleHeadPosition, avatar }: BubbleHeadProps) => {
       onPanResponderMove: Animated.event([
         null,
         { dx: draggableAnimation.x, dy: draggableAnimation.y }
-      ]),
+      ], { useNativeDriver: false }),
       onPanResponderGrant: () => {
         draggableAnimation.extractOffset();
       },
@@ -50,7 +50,7 @@ export const BubbleHead = ({ bubbleHeadPosition, avatar }: BubbleHeadProps) => {
       useNativeDriver: true,
     }).start();
   }, [])
-  const screenHeight = Dimensions.get("window").height;
+  const screenHeight = Dimensions.get('window').height;
 
   return (
     <View>
