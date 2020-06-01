@@ -17,6 +17,11 @@ const styles = StyleSheet.create({
 
 export const InterpolationAnimated = () => {
   const animation = useRef(new Animated.Value(0)).current;
+  const rotateAnimation = useRef(new Animated.Value(0)).current;
+  const rotateInterpolate = rotateAnimation.interpolate({
+    inputRange: [0, 360],
+    outputRange: ['0deg', '360deg'],
+  });  
   const interpolateBg = animation.interpolate({
     inputRange: [0, 1],
     outputRange: ['rgb(77,19,128)', 'rgb(237,233,7)'],
@@ -27,11 +32,23 @@ export const InterpolationAnimated = () => {
   });
   const boxAnimatedStyles = {
     backgroundColor: interpolateBg,
+    transform: [
+      { rotate: rotateInterpolate }
+    ],
   };
   const textAnimatedStyles = {
     color: interpolateText,
   };
   const startAnimation = () => {
+    Animated.timing(
+      rotateAnimation,
+      { toValue: 360, duration: 1000, useNativeDriver: false },
+    ).start(() => {
+      Animated.timing(
+        rotateAnimation,
+        { toValue: 0, duration: 1000, useNativeDriver: false },
+      ).start();
+    });    
     Animated.timing(
       animation, 
       { toValue: 1, duration: 1000, useNativeDriver: false },
