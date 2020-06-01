@@ -16,7 +16,9 @@ module.exports = {
         ],
         root: ['.'],
         alias: {
-          'experiments': './src/experiments'
+          'experiments': './src/experiments',
+          'app': './src/app',
+          'utils': './src/utils',
         }
       }
     ]

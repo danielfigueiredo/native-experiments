@@ -1,5 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
+import { randomWithinRange } from 'utils/random';
 import { BubbleHead, BubbleHeadPosition } from './bubble-head.component';
 
 const berusAvatar = require('../../../assets/berus-avatar.jpg');
@@ -10,7 +11,6 @@ const gliderAvatar = require('../../../assets/glider-avatar.png');
 
 export type BubbleHeadInfo = {
   avatar: any;
-  
 };
 
 export type BubbleHeadsProps = {
@@ -24,10 +24,6 @@ const bubbleHeads: BubbleHeadInfo[] = [
   { avatar: llamaAvatar },
   { avatar: gliderAvatar },
 ];
-
-const getRandomWithinRange = (min: number, max: number): number => {
-  return Math.floor(Math.random() * (max - min) + min);
-}
 
 const hasCollision = (
   bubbleHeadPositions: BubbleHeadPosition[],
@@ -52,8 +48,8 @@ const randomlyPositionBubbleHeads = (bubbleHeads: BubbleHeadInfo[]) => {
   let i = 0;
 
   while(i < bubbleHeads.length) {
-    const x = getRandomWithinRange(0, windowWidth);
-    const y = getRandomWithinRange(0, windowHeight);
+    const x = randomWithinRange(0, windowWidth);
+    const y = randomWithinRange(0, windowHeight);
     const position: BubbleHeadPosition = {
       radius,
       x: x,
@@ -68,17 +64,21 @@ const randomlyPositionBubbleHeads = (bubbleHeads: BubbleHeadInfo[]) => {
   return bubbleHeadPositions;
 };
 
-export const BubbleHeads = () => {
+export const BubbleHeads: React.FunctionComponent = () => {
   const bubbleHeadPositions = randomlyPositionBubbleHeads(bubbleHeads);
-  return bubbleHeads.map((bubbleHead: BubbleHeadInfo, index: number) => (
-    <BubbleHead 
-      key={`bubble-${index}`}
-      bubbleHeadPosition={{
-        x: bubbleHeadPositions[index].x,
-        y: bubbleHeadPositions[index].y,
-        radius: bubbleHeadPositions[index].radius,
-      }}
-      avatar={bubbleHead.avatar}
-    />
-  ));
+  return (
+    <>
+      {bubbleHeads.map((bubbleHead: BubbleHeadInfo, index: number) => (
+        <BubbleHead 
+          key={`bubble-${index}`}
+          bubbleHeadPosition={{
+            x: bubbleHeadPositions[index].x,
+            y: bubbleHeadPositions[index].y,
+            radius: bubbleHeadPositions[index].radius,
+          }}
+          avatar={bubbleHead.avatar}
+        />
+      ))}
+    </>
+  );
 };

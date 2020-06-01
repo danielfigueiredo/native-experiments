@@ -3,7 +3,7 @@ import { Animated, View, Image, StyleSheet, PanResponder, Dimensions } from 'rea
 
 const styles = StyleSheet.create({
   circle: {
-    backgroundColor: 'orange',
+    backgroundColor: 'green',
     justifyContent: 'center',
     alignItems: 'center'
   },
